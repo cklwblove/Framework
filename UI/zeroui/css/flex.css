@@ -1,0 +1,36 @@
+.module-flex {
+  display: -webkit-box !important;
+  display: -webkit-flex !important;
+  display: -ms-flexbox !important;
+  display: flex!important;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.module-flex *,
+.module-flex:before,
+.module-flex:after {
+  box-sizing: border-box;
+}
+.module-flex > .cell {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  width: 0;
+  -webkit-flex-basis: 0;
+  -ms-flex-preferred-size: 0;
+  flex-basis: 0;
+  max-width: 100%;
+  display: block;
+  padding: 0!important;
+  position: relative;
+}
+.module-flex > .cell.fixed {
+  -webkit-box-flex: 0!important;
+  -webkit-flex: none!important;
+  -ms-flex: none!important;
+  flex: none!important;
+  width: auto;
+}
+/*# sourceMappingURL=..\less\flex.css.map */

@@ -1,0 +1,265 @@
+//
+// Navbars
+// --------------------------------------------------
+
+
+// Wrapper and base class
+//
+// Provide a static navbar from which we expand to create full-width, fixed, and
+// other navbar variations.
+//@grid-float-breakpoint: (@grid-float-breakpoint + 2);
+.navbar {
+  position: relative;
+  min-height: @navbar-height + 16; // Ensure a navbar always shows (e.g., without a .navbar-brand in collapsed mode)
+  .logo {
+    .size(200px,66px);
+    background:url("@{base-img-path}ad_logo.png") no-repeat;
+    display: block;
+    background-size: contain;
+    @media (min-width: @screen-sm) {
+      .size(380px,128px);
+    }
+    @media (min-width: @screen-md-min) {
+      .size(420px,128px);
+    }
+  }
+  // Prevent floats from breaking the navbar
+  &:extend(.clearfix all);
+}
+
+
+// Navbar heading
+//
+// Groups `.navbar-brand` and `.navbar-toggle` into a single component for easy
+// styling of responsive aspects.
+
+.navbar-header {
+  &:extend(.clearfix all);
+
+  @media (min-width: @screen-md-min) {
+    float: left;
+    background-color: @navbar-default-link-hover-bg;
+  }
+}
+
+// Navbar collapse (body)
+//
+// Group your navbar content into this for easy collapsing and expanding across
+// various device sizes. By default, this content is collapsed when <768px, but
+// will expand past that for a horizontal display.
+//
+// To start (on mobile devices) the navbar links, forms, and buttons are stacked
+// vertically and include a `max-height` to overflow in case you have too much
+// content for the user's viewport.
+
+.navbar-collapse {
+  overflow-x: visible;
+  padding-right: @navbar-padding-horizontal;
+  padding-left:  @navbar-padding-horizontal;
+  background-color: #16181c;
+  border-bottom: 4px solid #000;
+  -webkit-overflow-scrolling: touch;
+
+  &.in {
+    overflow-y: auto;
+  }
+
+  @media (min-width: @screen-md-min) {
+    width: auto;
+    border-top: 0;
+    box-shadow: none;
+
+    &.collapse {
+      display: block !important;
+      visibility: visible !important;
+      height: auto !important;
+      padding-bottom: 0; // Override default setting
+      overflow: visible !important;
+    }
+
+    &.in {
+      overflow-y: visible;
+    }
+  }
+}
+
+//
+// Navbar alignment options
+//
+// Display the navbar across the entirety of the page or fixed it to the top or
+// bottom of the page.
+
+// Brand/project name
+
+.navbar-brand {
+  float: left;
+  padding: @navbar-padding-vertical @navbar-padding-horizontal;
+
+  @media (min-width: @screen-md-min) {
+    .navbar > .container &,
+    .navbar > .container-fluid & {
+      margin-left: -@navbar-padding-horizontal;
+    }
+  }
+}
+
+
+// Navbar toggle
+//
+// Custom button for toggling the `.navbar-collapse`, powered by the collapse
+// JavaScript plugin.
+
+.navbar-toggle {
+  position: relative;
+  float: right;
+  margin: (@navbar-padding-horizontal - 5) (@navbar-padding-horizontal - 5) 0 0 ;
+  padding: 6px 5px;
+  background-color: #31353c;
+  background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+  border: 3px solid transparent;
+  border-radius: @border-radius-base + 2;
+  &:focus { text-outline: none; }
+  // Bars
+  .icon-bar {
+    display: block;
+    width: 26px;
+    height: 4px;
+    border-radius: 1px;
+  }
+  .icon-bar + .icon-bar {
+    margin-top: 4px;
+  }
+  @media (min-width: @screen-sm) {
+    padding: 16px 16px;
+    margin-top: 18px;
+    .icon-bar {
+      height: 5px;
+    }
+  }
+  @media (min-width: @screen-md-min) {
+    display: none;
+  }
+}
+
+
+// Navbar nav links
+//
+// Builds on top of the `.nav` components with its own modifier class to make
+// the nav the full height of the horizontal nav (above 768px).
+
+.navbar-nav {
+  margin: (@navbar-padding-vertical / 2) -@navbar-padding-horizontal;
+  > li {
+    &:first-child { margin-top: -2px; }
+    > a {
+      padding: 12px 0;
+      display: block;
+      &:hover {
+        background-color: #1f2628;
+      }
+    }
+    .s-menu {
+      span { position: relative; .square(30px); line-height: 30px; text-align: center; display: inline-block;
+         &:before {
+           content: "";
+           position: absolute; .square(100%); z-index: 1; background-color: #35484e; box-shadow: inset 1px 0 0 rgba(87,120,130,.8), inset -1px 0 0 rgba(87,120,130,.8), inset 0 1px 0 rgba(87,120,130,.8), inset 0 -1px 0 rgba(87,120,130,.8); .rotate(45deg);
+         }
+         em { color: #c9d1d4; font-size: 18px; position: absolute; z-index: 2; left: 21px; }
+      }
+      strong, sup {
+        font-weight: 700;
+        -webkit-text-fill-color: transparent;
+        background: -webkit-gradient(left top, left bottom, color-stop(0%, #b3b3b3), color-stop(100%, #888888));
+        background: -webkit-linear-gradient(top, #b3b3b3 0%, #888888 100%);
+        -webkit-background-clip: text;
+      }
+      strong { vertical-align: top; font-size: 24px; padding-left: 25px; }
+      sup { font-size: 16px; left: 8px; }
+    }
+
+  }
+
+  @media (min-width: @screen-md-min) {
+    > li {
+      > a {
+        .size(190px,128px);
+        overflow: hidden;
+        background-image: url("@{base-img-path}btn_nav.png");
+        background-repeat: no-repeat;
+        &:hover {
+          background-color: transparent;
+        }
+      }
+      .s-menu { display: none; }
+      &:first-child { margin-top: 0;
+        a {
+          background-position: 0 0;
+          &:hover,
+          &.current {
+            background-position: 0 -129px;
+          }
+        }
+
+      }
+      &:nth-child(2) {
+        a {
+          background-position: 0 -258px;;
+          &:hover,
+          &.current {
+            background-position: 0 -387px;
+          }
+        }
+      }
+
+      &:nth-child(3) {
+        a {
+          background-position: 0 -516px;;
+          &:hover,
+          &.current {
+            background-position: 0 -645px;
+          }
+        }
+      }
+    }
+  }
+
+
+  // Uncollapse the nav
+  @media (min-width: @screen-md-min) {
+    float: left;
+    margin: 0;
+
+    > li {
+      float: left;
+      > a {
+        padding-top:    @navbar-padding-vertical;
+        padding-bottom: @navbar-padding-vertical;
+      }
+    }
+  }
+}
+
+// Component alignment
+//
+// Repurpose the pull utilities as their own navbar utilities to avoid specificity
+// issues with parents and chaining. Only do this when the navbar is uncollapsed
+// though so that navbar contents properly stack and align in mobile.
+//
+// Declared after the navbar components to ensure more specificity on the margins.
+
+
+// Alternate navbars
+// --------------------------------------------------
+
+// Default navbar
+.navbar-default {
+
+  .navbar-toggle {
+    border-color: @tooltip-bg;
+
+    .icon-bar {
+      background-color: #111213;
+    }
+  }
+}
+

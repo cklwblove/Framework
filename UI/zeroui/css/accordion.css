@@ -1,0 +1,29 @@
+.accordion {
+  margin: 1rem;
+  border-radius: 2px;
+  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+.accordion > .panel {
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+.accordion > .panel:first-child {
+  border-top: none;
+}
+.accordion > .panel.show .panel-body {
+  display: block;
+}
+.accordion > .panel.show .panel-heading {
+  background-color: #eee;
+  color: #0e90d2;
+}
+.accordion .panel-heading {
+  olor: rgba(0, 0, 0, 0.6);
+  -webkit-transition: background-color 0.2s ease-out;
+  transition: background-color 0.2s ease-out;
+  padding: .8rem 1rem;
+}
+.accordion .panel-body {
+  display: none;
+}
+/*# sourceMappingURL=..\less\accordion.css.map */

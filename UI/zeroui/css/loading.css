@@ -1,0 +1,21 @@
+.ui-loading {
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  z-index: -1;
+}
+.ui-loading p {
+  height: 40px;
+}
+.ui-loading .icon-spinner {
+  left: 5px;
+  font-size: 22px;
+}
+/*# sourceMappingURL=..\less\loading.css.map */

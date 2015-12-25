@@ -1,0 +1,42 @@
+//----------------------------------
+//
+//**
+// * 
+// * @authors Administrator (you@example.org)
+// * @date    2015/12/24 17:12
+// * @version $
+// * @desc 配合阿里的lib-flexible（https://github.com/amfe/lib-flexible/tree/master/）实现H5页面的终端适配
+// */
+//----------------------------------
+// 基础属性
+.px2px(@name, @px){
+  @{name}: round(@px / 2) * 1px;
+  [data-dpr="2"] & {
+    @{name}: @px * 1px;
+  }
+  // for mx3
+  [data-dpr="2.5"] & {
+    @{name}: round(@px * 2.5 / 2) * 1px;
+  }
+  // for 小米note
+  [data-dpr="2.75"] & {
+    @{name}: round(@px * 2.75 / 2) * 1px;
+  }
+  [data-dpr="3"] & {
+    @{name}: round(@px / 2 * 3) * 1px
+  }
+  // for 三星note4
+  [data-dpr="4"] & {
+    @{name}: @px * 2px;
+  }
+}
+
+//.px2px(font-size, 32);
+//.px2px(padding, 20);
+//.px2px(right, 8);
+
+// 图片
+.px2rem(@name, @px){
+  @{name}: @px / 75 * 1rem;
+}
+// px2rem(height, 80);

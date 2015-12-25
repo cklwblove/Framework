@@ -1,0 +1,32 @@
+extend ' .clearfix' has no matches
+.artilce .a {
+  color: #1d8acb;
+  text-decoration: none;
+  cursor: pointer;
+}
+.article-title {
+  font-size: 36px;
+  line-height: 42px;
+  font-weight: 300;
+  text-transform: none;
+}
+.article-meta {
+  font-size: 12px;
+  line-height: 18px;
+  color: #999;
+  margin: 15px 0;
+}
+.article-lead {
+  color: #222;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 400;
+}
+.article-divider {
+  height: 0;
+  margin: 15px 0;
+  border: 0;
+  border-top: 1px solid #e5e5e5;
+  border-color: #e5e5e5;
+}
+/*# sourceMappingURL=..\less\article.css.map */

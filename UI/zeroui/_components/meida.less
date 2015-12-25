@@ -1,0 +1,73 @@
+//----------------------------------
+//
+//**
+// * 
+// * @authors liwenbo (you@example.org)
+// * @date    2015/3/18 11:13
+// * @version $
+// * @desc 媒体对象（水平，垂直）
+// */
+//----------------------------------
+
+// 默认水平
+.media {
+  // Proper spacing between instances of .media
+  margin-top: 15px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.media-right,
+.media > .pull-right {
+  padding-left: 10px;
+}
+
+.media-left,
+.media > .pull-left {
+  padding-right: 10px;
+}
+
+.media-left,
+.media-right,
+.media-body {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.media-middle {
+  vertical-align: middle;
+}
+
+.media-bottom {
+  vertical-align: bottom;
+}
+
+// Reset margins on headings for tighter default spacing
+.media-heading {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+// Media list variation
+//
+// Undo default ul/ol styles
+.media-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+// Vertical
+.vertical {
+  .media-left,
+  .media-right,
+  .media-body {
+    display: block;
+  }
+  .media-left,
+  .media-right {
+    margin-bottom: 10px;
+  }
+}
+

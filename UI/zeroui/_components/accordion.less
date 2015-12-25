@@ -1,0 +1,44 @@
+//----------------------------------
+//
+//**
+// * 
+// * @authors liwenbo (you@example.org)
+// * @date    2015/3/18 11:20
+// * @version $
+// * @desc 手风琴，折叠效果
+// */
+//----------------------------------
+
+.accordion {
+  margin: 1rem;
+  border-radius: 2px;
+  -webkit-box-shadow: 0 0 0 1px rgba(0,0,0,.1);
+  box-shadow: 0 0 0 1px rgba(0,0,0,.1);
+
+  >.panel {
+    border-top: 1px solid rgba(0,0,0,.05);
+    &:first-child {
+      border-top: none;
+    }
+// 选中
+    &.show {
+      .panel-body {
+        display: block;
+      }
+      .panel-heading {
+        background-color: #eee;
+        color: #0e90d2;
+      }
+    }
+  }
+  .panel-heading {
+    olor: rgba(0,0,0,.6);
+    -webkit-transition: background-color .2s ease-out;
+    transition: background-color .2s ease-out;
+    padding: .8rem 1rem;
+  }
+  .panel-body {
+    display: none;
+  }
+}
+

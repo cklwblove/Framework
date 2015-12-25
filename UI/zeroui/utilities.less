@@ -1,0 +1,86 @@
+//
+// Utility classes （辅助类）
+// --------------------------------------------------
+
+
+// Floats
+// -------------------------
+
+.clearfix {
+  .clearfix();
+}
+.center-block {
+  .center-block();
+}
+.pull-right {
+  float: right !important;
+}
+.pull-left {
+  float: left !important;
+}
+
+
+// Toggling content
+// -------------------------
+
+// Note: Deprecated .hide in favor of .hidden or .sr-only (as appropriate) in v3.0.1
+.hide {
+  display: none !important;
+}
+.show {
+  display: block !important;
+}
+.invisible {
+  visibility: hidden;
+}
+.text-hide {
+  .text-hide();
+}
+
+
+// Hide from screenreaders and browsers
+//
+// Credit: HTML5 Boilerplate
+
+.hidden {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+
+// For Affix plugin
+// -------------------------
+
+.affix {
+  position: fixed;
+}
+
+
+//移动端
+//
+//横屏显示，竖屏不显示
+@media @landscape {
+  .show-landscape,
+  .hide-portrait {
+    display: inherit !important;
+  }
+
+  .hide-landscape,
+  .show-portrait {
+    display: none !important;
+  }
+}
+
+//横屏不显示，竖屏显示
+@media @portrait {
+  .show-portrait,
+  .hide-landscape {
+    display: inherit !important;
+  }
+
+  .hide-portrait,
+  .show-landscape {
+    display: none !important;
+  }
+}
+

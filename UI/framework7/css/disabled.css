@@ -1,0 +1,13 @@
+/* === Disabled elements === */
+.disabled,
+[disabled] {
+  opacity: 0.55;
+  pointer-events: none;
+}
+.disabled .disabled,
+.disabled [disabled],
+[disabled] .disabled,
+[disabled] [disabled] {
+  opacity: 1;
+}
+/*# sourceMappingURL=..\less\disabled.css.map */
