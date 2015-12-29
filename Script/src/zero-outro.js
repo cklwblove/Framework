@@ -1,0 +1,2 @@
+//Return instance
+return zero;
