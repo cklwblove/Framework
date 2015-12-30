@@ -814,7 +814,13 @@ var Dom = (function() {
             }
         }
     }
-
+    $.unique = function (arr) {
+        var unique = [];
+        for (var i = 0; i < arr.length; i++) {
+            if (unique.indexOf(arr[i]) === -1) unique.push(arr[i]);
+        }
+        return unique;
+    };
     // return {key: value, key: value}
     $.parseUrlQuery = function (url) {
         var query = {}, i, params, param;
