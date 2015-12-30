@@ -30,6 +30,7 @@
                 'src/wrap-start.js',
                 'src/zero-intro.js',
                 'src/dom.js',
+                'src/modals.js',
                 'src/validate.js',
                 'src/device.js',
                 'src/zero-outro.js',

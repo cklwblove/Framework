@@ -11,6 +11,18 @@
         hasOwnProperty = Object.prototype.hasOwnProperty;
     
     zero.version = '0.0.1';
+    // Default Parameters
+    zero.params = {
+        // Modals
+        modalButtonOk: 'OK',
+        modalButtonCancel: 'Cancel',
+        modalTitle: 'Framework7',
+        modalCloseByOutside: false,
+        actionsCloseByOutside: true,
+        popupCloseByOutside: true,
+        modalStack: true,
+    
+    }
 
     /*======================================================
      ************   Dom   ************
@@ -828,7 +840,13 @@
                 }
             }
         }
-    
+        $.unique = function (arr) {
+            var unique = [];
+            for (var i = 0; i < arr.length; i++) {
+                if (unique.indexOf(arr[i]) === -1) unique.push(arr[i]);
+            }
+            return unique;
+        };
         // return {key: value, key: value}
         $.parseUrlQuery = function (url) {
             var query = {}, i, params, param;
