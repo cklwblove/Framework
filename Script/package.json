@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nolimits4web/Framework7.git"
+    "url": "git@github.com:cklwblove/Framework.git"
   },
   "engines": {
     "node": ">= 0.10.0"
