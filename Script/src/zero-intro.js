@@ -1,36 +1,31 @@
 'use strict';
 
-var zero = {},
+var
     win = window,
-    doc = win.document,
-    hasOwnProperty = Object.prototype.hasOwnProperty;
 
-zero.version = '0.0.1';
-// Default Parameters
-zero.params = {
-    // Modals
-    modalButtonOk: 'OK',
-    modalButtonCancel: 'Cancel',
-    modalTitle: 'Framework7',
-    modalCloseByOutside: false,
-    actionsCloseByOutside: true,
-    popupCloseByOutside: true,
-    modalStack: true
-}
+    doc = win.document,
+
+    hasOwnProperty = Object.prototype.hasOwnProperty,
+
+    version = '0.0.1';
 
 /**
-     * Check whether the object has the property.
-     *
-     * @param {Object} obj
-     * @param {String} key
-     * @return {Boolean}
-     */
+ * Check whether the object has the property.
+ *
+ * @param {Object} obj
+ * @param {String} key
+ * @return {Boolean}
+ */
 
-    function hasOwn(obj, key) {
-        return hasOwnProperty.call(obj, key);
-    }
+function hasOwn(obj, key) {
+    return hasOwnProperty.call(obj, key);
+}
 
-    function isArray(arr) {
-        if (Object.prototype.toString.apply(arr) === '[object Array]') return true;
-        else return false;
-    }
+function isArray(arr) {
+    if (Object.prototype.toString.apply(arr) === '[object Array]') return true;
+    else return false;
+}
+
+function isString(str) {
+    return Object.prototype.toString.call(str) === "[object String]";
+}

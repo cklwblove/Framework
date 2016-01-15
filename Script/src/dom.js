@@ -813,7 +813,7 @@ var Dom = (function() {
                 }
             }
         }
-    }
+    };
     $.unique = function (arr) {
         var unique = [];
         for (var i = 0; i < arr.length; i++) {
@@ -832,7 +832,7 @@ var Dom = (function() {
             query[param[0]] = param[1];
         }
         return query;
-    }
+    };
 
     $.serializeObject = function (obj) {
         if (typeof obj === 'string') return obj;
@@ -853,7 +853,7 @@ var Dom = (function() {
         }
 
         return resultArray.join(separator);
-    }
+    };
 
     // Global Ajax Setup
     var globalAjaxOptions = {};
@@ -1115,9 +1115,6 @@ var Dom = (function() {
     return $;
 
 }());
-
-// Export Dom to zero
-zero.$$ = Dom;
 
 // Export to local scope
 var $$ = Dom;

@@ -2,13 +2,13 @@
 ************   Modals   ************
 ======================================================*/
 var _modalTemplateTempDiv = document.createElement('div');
-zero.modalStack = [];
-zero.modalStackClearQueue = function () {
-    if (zero.modalStack.length) {
-        (zero.modalStack.shift())();
+Zero.modalStack = [];
+Zero.modalStackClearQueue = function () {
+    if (Zero.modalStack.length) {
+        (Zero.modalStack.shift())();
     }
 };
-zero.modal = function (params) {
+var modal = function (params) {
     params = params || {};
     var buttonsHTML = '';
     if (params.buttons && params.buttons.length > 0) {
@@ -33,56 +33,56 @@ zero.modal = function (params) {
     // Add events on buttons
     modal.find('.modal-button').each(function (index, el) {
         $$(el).on('click', function (e) {
-            if (params.buttons[index].close !== false) zero.closeModal(modal);
+            if (params.buttons[index].close !== false) Zero.closeModal(modal);
             if (params.buttons[index].onClick) params.buttons[index].onClick(modal, e);
             if (params.onClick) params.onClick(modal, index);
         });
     });
-    zero.openModal(modal);
+    Zero.openModal(modal);
     return modal[0];
 };
-zero.alert = function (text, title, callbackOk) {
+Zero.alert = function (text, title, callbackOk) {
     if (typeof title === 'function') {
         callbackOk = arguments[1];
         title = undefined;
     }
-    return zero.modal({
+    return Zero.modal({
         text: text || '',
-        title: typeof title === 'undefined' ? zero.params.modalTitle : title,
-        buttons: [ {text: zero.params.modalButtonOk, bold: true, onClick: callbackOk} ]
+        title: typeof title === 'undefined' ? Zero.params.modalTitle : title,
+        buttons: [ {text: Zero.params.modalButtonOk, bold: true, onClick: callbackOk} ]
     });
 };
-zero.confirm = function (text, title, callbackOk, callbackCancel) {
+Zero.confirm = function (text, title, callbackOk, callbackCancel) {
     if (typeof title === 'function') {
         callbackCancel = arguments[2];
         callbackOk = arguments[1];
         title = undefined;
     }
-    return zero.modal({
+    return Zero.modal({
         text: text || '',
-        title: typeof title === 'undefined' ? zero.params.modalTitle : title,
+        title: typeof title === 'undefined' ? Zero.params.modalTitle : title,
         buttons: [
-            {text: zero.params.modalButtonCancel, onClick: callbackCancel},
-            {text: zero.params.modalButtonOk, bold: true, onClick: callbackOk}
+            {text: Zero.params.modalButtonCancel, onClick: callbackCancel},
+            {text: Zero.params.modalButtonOk, bold: true, onClick: callbackOk}
         ]
     });
 };
-zero.prompt = function (text, title, callbackOk, callbackCancel) {
+Zero.prompt = function (text, title, callbackOk, callbackCancel) {
     if (typeof title === 'function') {
         callbackCancel = arguments[2];
         callbackOk = arguments[1];
         title = undefined;
     }
-    return zero.modal({
+    return Zero.modal({
         text: text || '',
-        title: typeof title === 'undefined' ? zero.params.modalTitle : title,
+        title: typeof title === 'undefined' ? Zero.params.modalTitle : title,
         afterText: '<div class="input-field"><input type="text" class="modal-text-input"></div>',
         buttons: [
             {
-                text: zero.params.modalButtonCancel
+                text: Zero.params.modalButtonCancel
             },
             {
-                text: zero.params.modalButtonOk,
+                text: Zero.params.modalButtonOk,
                 bold: true
             }
         ],
@@ -92,7 +92,7 @@ zero.prompt = function (text, title, callbackOk, callbackCancel) {
         }
     });
 };
-zero.popup = function (modal, removeOnClose) {
+Zero.popup = function (modal, removeOnClose) {
     if (typeof removeOnClose === 'undefined') removeOnClose = true;
     if (typeof modal === 'string' && modal.indexOf('<') >= 0) {
         var _modal = document.createElement('div');
@@ -108,15 +108,15 @@ zero.popup = function (modal, removeOnClose) {
     if (modal.length === 0) return false;
     modal.show();
 
-    zero.openModal(modal);
+    Zero.openModal(modal);
     return modal[0];
 };
-zero.openModal = function (modal) {
+Zero.openModal = function (modal) {
     modal = $$(modal);
     var isModal = modal.hasClass('modal');
-    if ($$('.modal.modal-in:not(.modal-out)').length && zero.params.modalStack && isModal) {
-        zero.modalStack.push(function () {
-            zero.openModal(modal);
+    if ($$('.modal.modal-in:not(.modal-out)').length && Zero.params.modalStack && isModal) {
+        Zero.modalStack.push(function () {
+            Zero.openModal(modal);
         });
         return;
     }
@@ -149,7 +149,7 @@ zero.openModal = function (modal) {
     });
     return true;
 };
-zero.closeModal = function (modal) {
+Zero.closeModal = function (modal) {
     modal = $$(modal || '.modal-in');
     if (typeof modal !== 'undefined' && modal.length === 0) {
         return;
@@ -177,7 +177,7 @@ zero.closeModal = function (modal) {
     modal.trigger('close');
 
     if (isModal) {
-        zero.modalStackClearQueue();
+        Zero.modalStackClearQueue();
     }
     modal.removeClass('modal-in modal-out').trigger('closed').hide();
     if (removeOnClose) {
