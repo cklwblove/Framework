@@ -1,44 +1,39 @@
 (function(global, factory){
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
     typeof define === 'function' && define.amd ? define(factory) :
-    global.zero = factory();
+    global.Zero = factory();
 }(this, function() {
     'use strict';
     
-    var zero = {},
+    var
         win = window,
-        doc = win.document,
-        hasOwnProperty = Object.prototype.hasOwnProperty;
     
-    zero.version = '0.0.1';
-    // Default Parameters
-    zero.params = {
-        // Modals
-        modalButtonOk: 'OK',
-        modalButtonCancel: 'Cancel',
-        modalTitle: 'Framework7',
-        modalCloseByOutside: false,
-        actionsCloseByOutside: true,
-        popupCloseByOutside: true,
-        modalStack: true
-    }
+        doc = win.document,
+    
+        hasOwnProperty = Object.prototype.hasOwnProperty,
+    
+        version = '0.0.1';
     
     /**
-         * Check whether the object has the property.
-         *
-         * @param {Object} obj
-         * @param {String} key
-         * @return {Boolean}
-         */
+     * Check whether the object has the property.
+     *
+     * @param {Object} obj
+     * @param {String} key
+     * @return {Boolean}
+     */
     
-        function hasOwn(obj, key) {
-            return hasOwnProperty.call(obj, key);
-        }
+    function hasOwn(obj, key) {
+        return hasOwnProperty.call(obj, key);
+    }
     
-        function isArray(arr) {
-            if (Object.prototype.toString.apply(arr) === '[object Array]') return true;
-            else return false;
-        }
+    function isArray(arr) {
+        if (Object.prototype.toString.apply(arr) === '[object Array]') return true;
+        else return false;
+    }
+    
+    function isString(str) {
+        return Object.prototype.toString.call(str) === "[object String]";
+    }
 
     /*======================================================
      ************   Dom   ************
@@ -855,7 +850,7 @@
                     }
                 }
             }
-        }
+        };
         $.unique = function (arr) {
             var unique = [];
             for (var i = 0; i < arr.length; i++) {
@@ -874,7 +869,7 @@
                 query[param[0]] = param[1];
             }
             return query;
-        }
+        };
     
         $.serializeObject = function (obj) {
             if (typeof obj === 'string') return obj;
@@ -895,7 +890,7 @@
             }
     
             return resultArray.join(separator);
-        }
+        };
     
         // Global Ajax Setup
         var globalAjaxOptions = {};
@@ -1158,20 +1153,159 @@
     
     }());
     
-    // Export Dom to zero
-    zero.$$ = Dom;
-    
     // Export to local scope
     var $$ = Dom;
     
     // Export to Window
     window.$$ = Dom;
 
+        /*======================================================
+         ************   util   ************
+         ======================================================*/
+        
+        /**
+         *  对Date的扩展，将 Date 转化为指定格式的String * 月(M)、日(d)、12小时(h)、24小时(H)、分(m)、秒(s)、周(E)、季度(q)
+         可以用 1-2 个占位符 * 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字)
+         * @param pattern 格式
+         * @param timestamp 时间戳
+         * @returns {*} 默认返回当前时间
+         * eg:
+         * ("yyyy-MM-dd hh:mm:ss.S")==> 2006-07-02 08:09:04.423
+         * ("yyyy-MM-dd E HH:mm:ss") ==> 2009-03-10 二 20:09:04
+         * ("yyyy-MM-dd EE hh:mm:ss") ==> 2009-03-10 周二 08:09:04
+         * ("yyyy-MM-dd EEE hh:mm:ss") ==> 2009-03-10 星期二 08:09:04
+         * ("yyyy-M-d h:m:s.S") ==> 2006-7-2 8:9:4.18
+         */
+        function formatDate() {
+            var that, pattern, timestamp;
+        
+            if (arguments.length === 1) {
+                pattern = arguments[0];
+            } else {
+                pattern = arguments[0];
+                timestamp = arguments[1];
+            }
+        
+            that = timestamp ?
+                new Date(parseInt(timestamp) * 1000) :
+                new Date();
+        
+            var o = {
+                "M+": that.getMonth() + 1, //月份
+                "d+": that.getDate(), //日
+                "h+": that.getHours() % 12 === 0 ? 12 : that.getHours() % 12, //小时
+                "H+": that.getHours(), //小时
+                "m+": that.getMinutes(), //分
+                "s+": that.getSeconds(), //秒
+                "q+": Math.floor((that.getMonth() + 3) / 3), //季度
+                "S": that.getMilliseconds() //毫秒
+            };
+            var week = {
+                "0": "/u65e5",
+                "1": "/u4e00",
+                "2": "/u4e8c",
+                "3": "/u4e09",
+                "4": "/u56db",
+                "5": "/u4e94",
+                "6": "/u516d"
+            };
+            if (/(y+)/.test(pattern)) {
+                pattern = pattern.replace(RegExp.$1, (that.getFullYear() + "").substr(4 - RegExp.$1.length));
+            }
+            if (/(E+)/.test(pattern)) {
+                pattern = pattern.replace(RegExp.$1, ((RegExp.$1.length > 1) ? (RegExp.$1.length > 2 ? "/u661f/u671f" : "/u5468") : "") + week[that.getDay() + ""]);
+            }
+            for (var k in o) {
+                if (new RegExp("(" + k + ")").test(pattern)) {
+                    pattern = pattern.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+                }
+            }
+            return pattern;
+        }
+        
+        /**
+         * 计算字符的长度，中文两个，英文一个，特殊字符除外
+         * @param str
+         * @returns {*}
+         */
+        function getStringLen(str) {
+            if (!isString(str)) {
+                return undefined;
+            }
+        
+            var i = 0,
+                len = str.length;
+        
+            for ( ; i < len; i++) {
+                var c = str.charCodeAt(i);
+                if ((c >= 0x0001 && c <= 0x007e) || (0xff60 <= c && c <= 0xff9f)) {
+                    len++;
+                } else { // 中文字符
+                    len += 2;
+                }
+            }
+            return len;
+        }
+        
+        /**
+         * 获取范围之内的随机数
+         * @param min
+         * @param max
+         * @returns {*}
+         */
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        
+        /**
+         * 得到url查询字符串参数
+         * 默认当前url，也可以指定url
+         * @returns {{}} key value
+         */
+        function getUrlArgs() {
+            var url, qs, len, items,
+                args = {},
+                item = null,
+                name = null,
+                value = null,
+                i = 0;
+        
+            if(arguments.length) {
+                url = arguments[0];
+                qs = url.substring(url.indexOf("?") + 1, url.length);
+            } else {
+                url = location.search;
+                qs = url.substring(1);
+            }
+        
+            items = qs.split('&');
+            len = items.length;
+        
+            for( ; i < len; i += 1) {
+                item = items[i].split('=');
+                name = decodeURIComponent(item[0]);
+                value = decodeURIComponent(item[1]);
+        
+                if(name.length) {
+                    args[name] = value;
+                }
+            }
+        
+            return args;
+        }
+        
+        var util = {
+            formatDate: formatDate,
+            getStringLen: getStringLen,
+            getRandomInt: getRandomInt,
+            getUrlArgs: getUrlArgs
+        };
+
     /*======================================================
      ************   Validate   ************
      ======================================================*/
     
-    var Regex = {
+    var regex = {
         //时分,11:30
         regMS: /^([0-1]\d|2[0-3]):[0-5]\d$/,
         //字母或数字
@@ -1180,7 +1314,7 @@
         regEmail: /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/,
         //url地址(/^[a-zA-z]+:\/\/([a-zA-Z0-9\-\.]+)([-\w .\/?%&=:]*)$/)
         regUrl: /^(https?|ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/,
-        //url替代var urlRegex = "^((https|http|ftp|rtsp|mms)://)?[a-z0-9A-Z]{3}\.[a-z0-9A-Z][a-z0-9A-Z]{0,61}?[a-z0-9A-Z]\.com|net|cn|cc (:s[0-9]{1-4})?/$";var rUrl = new RegExp(urlRegex)
+        //url替代var urlregex = "^((https|http|ftp|rtsp|mms)://)?[a-z0-9A-Z]{3}\.[a-z0-9A-Z][a-z0-9A-Z]{0,61}?[a-z0-9A-Z]\.com|net|cn|cc (:s[0-9]{1-4})?/$";var rUrl = new RegExp(urlregex)
         //ip地址
         regIp:/^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/,
         //手机号码
@@ -1217,319 +1351,350 @@
         regFl: /^(-?\d+)(\.\d+)?$/
     };
     
-    zero.validate = (function(){
-        var validate = {
-            //去掉左右空格
-            trim: function(objValue) {
-                return objValue.replace(/(^\s*)|(\s*$)/g, "");
-            },
-            //去掉左空格
-            lTrim: function(objValue) {
-                return objValue.replace(/(^\s*)/g, "");
-            },
-            //去掉右空格
-            rTrim: function(objValue) {
-                return objValue.replace(/(\s*$)/g, "");
-            },
+    var validate = {
+        //去掉左右空格
+        trim: function(objValue) {
+            return objValue.replace(/(^\s*)|(\s*$)/g, "");
+        },
+        //去掉左空格
+        lTrim: function(objValue) {
+            return objValue.replace(/(^\s*)/g, "");
+        },
+        //去掉右空格
+        rTrim: function(objValue) {
+            return objValue.replace(/(\s*$)/g, "");
+        },
     
-            //是否为浮点数（也可以是整数）
-            isFloat: function(pattern, objValue) {
-                return pattern.test(objValue) ? true: false;
-            },
-            //是否为汉字
-            isChineseWord: function(objValue) {
-                return objValue.match(Regex.regChineseWord) ? true: false;
-            },
-            //是否为正确邮编
-            isPostalCode: function(objValue) {
-                return Regex.regPostalCode.test(objValue) ? true: false;
-            },
-            //是否为正确手机号
-            isMobile: function(objValue) {
-                return Regex.regMobile.exec(objValue) ? true: false;
-            },
-            // 是否为正确电话号码
-            isTel: function(objValue) {
-                return Regex.regTel.exec(objValue) ? true: false;
-            },
-            // 是否为时分
-            isMinutesSecond: function(objValue) {
-                return Regex.regMS.test(objValue) ? true: false;
-            },
-            // 是否为日期
-            isValidDate: function(iY, iM, iD) {
-                var a = new Date(iY, iM - 1, iD);
-                var y = a.getFullYear();
-                var m = a.getMonth() + 1;
-                var d = a.getDate();
-                return (y != iY || m != iM || d != iD) ? false: true;
-            },
-            //身份证验证
-            isChinaIDCard: function(StrNo) {
-                if (StrNo.length == 18) {
-                    var a, b, c
-                    if (!isInteger(StrNo.substr(0, 17))) {
-                        return false
-                    }
-                    a = parseInt(StrNo.substr(0, 1)) * 7 + parseInt(StrNo.substr(1, 1)) * 9 + parseInt(StrNo.substr(2, 1)) * 10;
-                    a = a + parseInt(StrNo.substr(3, 1)) * 5 + parseInt(StrNo.substr(4, 1)) * 8 + parseInt(StrNo.substr(5, 1)) * 4;
-                    a = a + parseInt(StrNo.substr(6, 1)) * 2 + parseInt(StrNo.substr(7, 1)) * 1 + parseInt(StrNo.substr(8, 1)) * 6;
-                    a = a + parseInt(StrNo.substr(9, 1)) * 3 + parseInt(StrNo.substr(10, 1)) * 7 + parseInt(StrNo.substr(11, 1)) * 9;
-                    a = a + parseInt(StrNo.substr(12, 1)) * 10 + parseInt(StrNo.substr(13, 1)) * 5 + parseInt(StrNo.substr(14, 1)) * 8;
-                    a = a + parseInt(StrNo.substr(15, 1)) * 4 + parseInt(StrNo.substr(16, 1)) * 2;
-                    b = a % 11;
+        //是否为浮点数（也可以是整数）
+        isFloat: function(pattern, objValue) {
+            return pattern.test(objValue) ? true: false;
+        },
+        //是否为汉字
+        isChineseWord: function(objValue) {
+            return objValue.match(regex.regChineseWord) ? true: false;
+        },
+        //是否为正确邮编
+        isPostalCode: function(objValue) {
+            return regex.regPostalCode.test(objValue) ? true: false;
+        },
+        //是否为正确手机号
+        isMobile: function(objValue) {
+            return regex.regMobile.exec(objValue) ? true: false;
+        },
+        // 是否为正确电话号码
+        isTel: function(objValue) {
+            return regex.regTel.exec(objValue) ? true: false;
+        },
+        // 是否为时分
+        isMinutesSecond: function(objValue) {
+            return regex.regMS.test(objValue) ? true: false;
+        },
+        // 是否为日期
+        isValidDate: function(iY, iM, iD) {
+            var a = new Date(iY, iM - 1, iD);
+            var y = a.getFullYear();
+            var m = a.getMonth() + 1;
+            var d = a.getDate();
+            return (y != iY || m != iM || d != iD) ? false: true;
+        },
+        //身份证验证
+        isChinaIDCard: function(strNo) {
+            if (strNo.length == 18) {
+                var a, b, c;
+                if (!isInteger(strNo.substr(0, 17))) {
+                    return false;
+                }
+                a = parseInt(strNo.substr(0, 1)) * 7 + parseInt(strNo.substr(1, 1)) * 9 + parseInt(strNo.substr(2, 1)) * 10;
+                a = a + parseInt(strNo.substr(3, 1)) * 5 + parseInt(strNo.substr(4, 1)) * 8 + parseInt(strNo.substr(5, 1)) * 4;
+                a = a + parseInt(strNo.substr(6, 1)) * 2 + parseInt(strNo.substr(7, 1)) * 1 + parseInt(strNo.substr(8, 1)) * 6;
+                a = a + parseInt(strNo.substr(9, 1)) * 3 + parseInt(strNo.substr(10, 1)) * 7 + parseInt(strNo.substr(11, 1)) * 9;
+                a = a + parseInt(strNo.substr(12, 1)) * 10 + parseInt(strNo.substr(13, 1)) * 5 + parseInt(strNo.substr(14, 1)) * 8;
+                a = a + parseInt(strNo.substr(15, 1)) * 4 + parseInt(strNo.substr(16, 1)) * 2;
+                b = a % 11;
     
-                    if (b == 2) //最后一位为校验位
-                    {
-                        c = StrNo.substr(17, 1).toUpperCase(); //转为大写X
+                if (b == 2) //最后一位为校验位
+                {
+                    c = strNo.substr(17, 1).toUpperCase(); //转为大写X
+                } else {
+                    c = parseInt(strNo.substr(17, 1));
+                }
+    
+                switch (b) {
+                    case 0:
+                        if (c != 1) {
+                            //alert("身份证好号码校验位错:最后一位应该为:1");
+                            return false;
+                        }
+                        break;
+                    case 1:
+                        if (c !== 0) {
+                            //alert("身份证好号码校验位错:最后一位应该为:0");
+                            return false;
+                        }
+                        break;
+                    case 2:
+                        if (c != "X") {
+                            //alert("身份证好号码校验位错:最后一位应该为:X");
+                            return false;
+                        }
+                        break;
+                    case 3:
+                        if (c != 9) { //alert("身份证好号码校验位错:最后一位应该为:9");
+                            return false;
+                        }
+                        break;
+                    case 4:
+                        if (c != 8) { //alert("身份证好号码校验位错:最后一位应该为:8");
+                            return false;
+                        }
+                        break;
+                    case 5:
+                        if (c != 7) { //alert("身份证好号码校验位错:最后一位应该为:7");
+                            return false;
+                        }
+                        break;
+                    case 6:
+                        if (c != 6) { //alert("身份证好号码校验位错:最后一位应该为:6");
+                            return false;
+                        }
+                        break;
+                    case 7:
+                        if (c != 5) { //alert("身份证好号码校验位错:最后一位应该为:5");
+                            return false;
+                        }
+                        break;
+                    case 8:
+                        if (c != 4) { //alert("身份证好号码校验位错:最后一位应该为:4");
+                            return false;
+                        }
+                        break;
+                    case 9:
+                        if (c != 3) { //alert("身份证好号码校验位错:最后一位应该为:3");
+                            return false;
+                        }
+                        break;
+                    case 10:
+                        if (c != 2) { //alert("身份证好号码校验位错:最后一位应该为:2");
+                            return false;
+                        }
+                        break;
+                }
+            } else {   //15位身份证号
+                if (!isInteger(strNo)) { //alert("身份证号码错误,前15位不能含有英文字母！");
+                    return false;
+                }
+            }
+            switch (strNo.length) {
+                case 15:
+                    if (this.isValidDate("19" + strNo.substr(6, 2), strNo.substr(8, 2), strNo.substr(10, 2))) {
+                        return true;
                     } else {
-                        c = parseInt(StrNo.substr(17, 1));
-                    }
-    
-                    switch (b) {
-                        case 0:
-                            if (c != 1) {
-                                //alert("身份证好号码校验位错:最后一位应该为:1");
-                                return false;
-                            }
-                            break;
-                        case 1:
-                            if (c !== 0) {
-                                //alert("身份证好号码校验位错:最后一位应该为:0");
-                                return false;
-                            }
-                            break;
-                        case 2:
-                            if (c != "X") {
-                                //alert("身份证好号码校验位错:最后一位应该为:X");
-                                return false;
-                            }
-                            break;
-                        case 3:
-                            if (c != 9) { //alert("身份证好号码校验位错:最后一位应该为:9");
-                                return false;
-                            }
-                            break;
-                        case 4:
-                            if (c != 8) { //alert("身份证好号码校验位错:最后一位应该为:8");
-                                return false;
-                            }
-                            break;
-                        case 5:
-                            if (c != 7) { //alert("身份证好号码校验位错:最后一位应该为:7");
-                                return false;
-                            }
-                            break;
-                        case 6:
-                            if (c != 6) { //alert("身份证好号码校验位错:最后一位应该为:6");
-                                return false;
-                            }
-                            break;
-                        case 7:
-                            if (c != 5) { //alert("身份证好号码校验位错:最后一位应该为:5");
-                                return false;
-                            }
-                            break;
-                        case 8:
-                            if (c != 4) { //alert("身份证好号码校验位错:最后一位应该为:4");
-                                return false;
-                            }
-                            break;
-                        case 9:
-                            if (c != 3) { //alert("身份证好号码校验位错:最后一位应该为:3");
-                                return false;
-                            }
-                            break;
-                        case 10:
-                            if (c != 2) { //alert("身份证好号码校验位错:最后一位应该为:2");
-                                return false;
-                            }
-                            break;
-                    }
-                } else {   //15位身份证号
-                    if (!isInteger(StrNo)) { //alert("身份证号码错误,前15位不能含有英文字母！");
                         return false;
                     }
-                }
-                switch (StrNo.length) {
-                    case 15:
-                        if (this.isValidDate("19" + StrNo.substr(6, 2), StrNo.substr(8, 2), StrNo.substr(10, 2))) {
-                            return true;
-                        } else {
-                            return false;
-                        }
-                    case 18:
-                        if (this.isValidDate(StrNo.substr(6, 4), StrNo.substr(10, 2), StrNo.substr(12, 2))) {
-                            return true;
-                        } else {
-                            return false;
-                        }
-                }
-                //alert("输入的身份证号码必须为15位或者18位！");
-                return false;
-            },
-            /**
-             * 用时间戳来验证时间(开始和结束时间)(不含有时分秒)
-             * @param startTime,endTime
-             */
-            isValidTime: function(startTime, endTime, pattern) {
-                pattern = pattern || '-';
-                var startstrs = startTime.split(pattern);
-                var startyear = startstrs[0];
-                var startmonth = startstrs[1];
-                var startday = startstrs[2];
-                var startDate = new Date(startyear, startmonth, startday);
-                var starttime = startDate.getTime() / 1000;
-    
-                var endstrs = endTime.split("-");
-                var endyear = endstrs[0];
-                var endmonth = endstrs[1];
-                var endday = endstrs[2];
-                var endDate = new Date(endyear, endmonth, endday);
-                var endtime = endDate.getTime() / 1000;
-    
-                return starttime >= endtime ? false: true;
-            },
-    
-            /**
-             * 用时间戳来验证时间(开始和结束时间)(含有时分秒)
-             * @param startTime,startHour,startM,startS,endTime,endH,endM,endS
-             */
-            isValidDateTMS: function(startTime, startH, startM, startS, endTime, endH, endM, endS) {
-                var startstrs = startTime.split("-");
-                var startyear = startstrs[0];
-                var startmonth = startstrs[1];
-                var startday = startstrs[2];
-                var startDate = new Date(startyear, startmonth, startday, startH, startM, startS);
-                var starttime = startDate.getTime() / 1000;
-    
-                var endstrs = endTime.split("-");
-                var endyear = endstrs[0];
-                var endmonth = endstrs[1];
-                var endday = endstrs[2];
-                var endDate = new Date(endyear, endmonth, endday, endH, endM, endS);
-                var endtime = endDate.getTime() / 1000;
-    
-                return starttime >= endtime ? false: true;
-            },
-    
-            //是否为数字
-            isDigit : function (objValue){
-                return Regex.regNum.exec(objValue) ? true:false;
-            },
-            //是否为正确Href
-            isHref : function(objValue){
-                return Regex.regUrl.exec(objValue) ? true:false;
-            },
-            //是否为正确IP
-            isIp : function(objValue){
-                return Regex.regIp.test(objValue) ? true:false;
-            },
-            //是否为整数
-            isInteger : function (pattern, objValue){
-                return pattern.test(objValue)?true:false;
+                case 18:
+                    if (this.isValidDate(strNo.substr(6, 4), strNo.substr(10, 2), strNo.substr(12, 2))) {
+                        return true;
+                    } else {
+                        return false;
+                    }
             }
+            //alert("输入的身份证号码必须为15位或者18位！");
+            return false;
+        },
+        /**
+         * 用时间戳来验证时间(开始和结束时间)(不含有时分秒)
+         * @param startTime,endTime
+         */
+        isValidTime: function(startTime, endTime, pattern) {
+            pattern = pattern || '-';
+            var startstrs = startTime.split(pattern);
+            var startyear = startstrs[0];
+            var startmonth = startstrs[1];
+            var startday = startstrs[2];
+            var startDate = new Date(startyear, startmonth, startday);
+            var starttime = startDate.getTime() / 1000;
     
-        };
+            var endstrs = endTime.split("-");
+            var endyear = endstrs[0];
+            var endmonth = endstrs[1];
+            var endday = endstrs[2];
+            var endDate = new Date(endyear, endmonth, endday);
+            var endtime = endDate.getTime() / 1000;
     
-        return validate;
-    }());
+            return starttime >= endtime ? false: true;
+        },
+    
+        /**
+         * 用时间戳来验证时间(开始和结束时间)(含有时分秒)
+         * @param startTime,startHour,startM,startS,endTime,endH,endM,endS
+         */
+        isValidDateTMS: function(startTime, startH, startM, startS, endTime, endH, endM, endS) {
+            var startstrs = startTime.split("-");
+            var startyear = startstrs[0];
+            var startmonth = startstrs[1];
+            var startday = startstrs[2];
+            var startDate = new Date(startyear, startmonth, startday, startH, startM, startS);
+            var starttime = startDate.getTime() / 1000;
+    
+            var endstrs = endTime.split("-");
+            var endyear = endstrs[0];
+            var endmonth = endstrs[1];
+            var endday = endstrs[2];
+            var endDate = new Date(endyear, endmonth, endday, endH, endM, endS);
+            var endtime = endDate.getTime() / 1000;
+    
+            return starttime >= endtime ? false: true;
+        },
+    
+        //是否为数字
+        isDigit : function (objValue){
+            return regex.regNum.exec(objValue) ? true:false;
+        },
+        //是否为正确Href
+        isHref : function(objValue){
+            return regex.regUrl.exec(objValue) ? true:false;
+        },
+        //是否为正确IP
+        isIp : function(objValue){
+            return regex.regIp.test(objValue) ? true:false;
+        },
+        //是否为整数
+        isInteger : function (pattern, objValue){
+            return pattern.test(objValue) ? true:false;
+        }
+    
+    };
 
-    /*======================================================
-     ************   device or browser   ************
-     ======================================================*/
-    
-    zero.device = (function () {
-        var device = {};
-        var ua = navigator.userAgent;
-    
-        var android = ua.match(/(Android);?[\s\/]+([\d.]+)?/);
-        var ipad = ua.match(/(iPad).*OS\s([\d_]+)/);
-        var ipod = ua.match(/(iPod)(.*OS\s([\d_]+))?/);
-        var iphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/);
-    
-        device.ios = device.android = device.iphone = device.ipad = device.androidChrome = false;
-    
-        // Android
-        if (android) {
-            device.os = 'android';
-            device.osVersion = android[2];
-            device.android = true;
-            device.androidChrome = ua.toLowerCase().indexOf('chrome') >= 0;
-        }
-        if (ipad || iphone || ipod) {
-            device.os = 'ios';
-            device.ios = true;
-        }
-        // iOS
-        if (iphone && !ipod) {
-            device.osVersion = iphone[2].replace(/_/g, '.');
-            device.iphone = true;
-        }
-        if (ipad) {
-            device.osVersion = ipad[2].replace(/_/g, '.');
-            device.ipad = true;
-        }
-        if (ipod) {
-            device.osVersion = ipod[3] ? ipod[3].replace(/_/g, '.') : null;
-            device.iphone = true;
-        }
-        // iOS 8+ changed UA
-        if (device.ios && device.osVersion && ua.indexOf('Version/') >= 0) {
-            if (device.osVersion.split('.')[0] === '10') {
-                device.osVersion = ua.toLowerCase().split('version/')[1].split(' ')[0];
-            }
-        }
-    
-        // Webview
-        device.webView = (iphone || ipad || ipod) && ua.match(/.*AppleWebKit(?!.*Safari)/i);
-    
-        //browser
-        device.browser = function() {
-            ua = ua.toLowerCase();
-            var type = 'UNKNOW',
-                version = 'UNKNOW',
-                v;
+        /*======================================================
+         ************   client -> device or browser   ************
+         ======================================================*/
+        
+        var client = (function () {
+            var ua = navigator.userAgent;
+            var ua_lower = ua.toLowerCase();
             var check = function(regex) {
-                return regex.test(ua);
+                return regex.test(ua_lower);
             };
-    
+            var device = {
+                //版本号
+                ver: 'unknow'
+            };
+            var android = ua.match(/(Android);?[\s\/]+([\d.]+)?/);
+            var ipad = ua.match(/(iPad).*OS\s([\d_]+)/);
+            var ipod = ua.match(/(iPod)(.*OS\s([\d_]+))?/);
+            var iphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/);
+        
+            device.ios = device.android = device.iphone = device.ipad = device.androidChrome = false;
+        
+            // Android
+            if (android) {
+                device.os = 'android';
+                device.ver = android[2];
+                device.android = true;
+                device.androidChrome = ua.toLowerCase().indexOf('chrome') >= 0;
+            }
+            if (ipad || iphone || ipod) {
+                device.os = 'ios';
+                device.ios = true;
+            }
+            // iOS
+            if (iphone && !ipod) {
+                device.ver = iphone[2].replace(/_/g, '.');
+                device.iphone = true;
+            }
+            if (ipad) {
+                device.ver = ipad[2].replace(/_/g, '.');
+                device.ipad = true;
+            }
+            if (ipod) {
+                device.ver = ipod[3] ? ipod[3].replace(/_/g, '.') : null;
+                device.iphone = true;
+            }
+            // iOS 8+ changed UA
+            if (device.ios && device.ver && ua.indexOf('Version/') >= 0) {
+                if (device.ver.split('.')[0] === '10') {
+                    device.ver = ua.toLowerCase().split('version/')[1].split(' ')[0];
+                }
+            }
+        
+            // Webview
+            device.webView = (iphone || ipad || ipod) && ua.match(/.*AppleWebKit(?!.*Safari)/i);
+        
+            var browser = {
+                ie: false,
+                firefox: false,
+                chrome: false,
+                safari: false,
+                opera: false,
+                //版本号
+                ver: 'unknow'
+            };
+            //browser
             //IE
             if (check(/msie/) && !check(/opera/)) {
-                type = 'ie';
-                v = /msie[\/|\s]*([\d+?\.?]+)/.exec(ua);
+                browser.ie = true;
+                browser.ver = /msie[\/|\s]*([\d+?\.?]+)/.exec(ua_lower);
             }
             //firefox
             else if ((!check(/webkit/) && check(/gecko/) && check(/firefox/)) && !check(/opera/)) {
-                type = 'firefox';
-                v = /firefox[\/|\s]*([\d+?\.?]+)/.exec(ua);
+                browser.firefox = true;
+                browser.ver = /firefox[\/|\s]*([\d+?\.?]+)/.exec(ua_lower);
             }
             //chrome
             else if (check(/\bchrome\b/)) {
-                type = 'chrome';
-                v = /chrome[\/|\s]*([\d+?\.?]+)/.exec(ua);
+                browser.chrome = true;
+                browser.ver = /chrome[\/|\s]*([\d+?\.?]+)/.exec(ua_lower);
             }
-            //safari (!check(/\bchrome\b/) is ensure by non-chrome above)
+            //safari (!check(/\bchrome\b/) is ensure by non-chrome abodevice.engineVe)
             else if (check(/applewebkit/) && check(/safari/)) {
-                type = 'safari';
-                v = /version[\/|\s]*([\d+?\.?]+)/.exec(ua);
+                browser.safari = true;
+                browser.ver = /version[\/|\s]*([\d+?\.?]+)/.exec(ua_lower);
             } else if (check(/opera/)) {
-                type = 'opera';
-                v = /version[\/|\s]*([\d+?.?]+)/.exec(ua) || /opera[\/|\s]*([\d+?.?]+)/.exec(ua);
+                browser.opera = true;
+                browser.ver = /version[\/|\s]*([\d+?.?]+)/.exec(ua_lower) || /opera[\/|\s]*([\d+?.?]+)/.exec(ua);
             }
-    
+        
+            browser.ver = (browser.ver && browser.ver[1]) ? browser.ver[1] : 'unknow';
+        
+            // Export object
             return {
-                type: type,
-                version: version = (v && v[1]) ? v[1] : 'UNKNOW'
+                device: device,
+                browser: browser
+        
             };
-    
-        };
-        // Export object
-        return device;
-    })();
+        })();
 
+    function Zero(params) {
+        // Default Parameters
+        this.params = {
+            // Modals
+            modalButtonOk: '确定',
+            modalButtonCancel: '取消',
+            modalTitle: '系统消息',
+            modalStack: true
+        };
+    
+        this._init(params);
+    }
+    
+    Zero.prototype = {
+        constructor: Zero,
+        version: version,
+        util: util,
+        validate: validate,
+        client: client
+    };
+    
+    Zero.prototype._init = function (params) {
+        params = params || {};
+        // Extend defaults with parameters
+        for (var param in params) {
+            this.params[param] = params[param];
+        }
+    };
+    
     //Return instance
-    return zero;
+    return Zero;
 
 }));
 //# sourceMappingURL=zero.js.map
