@@ -18,8 +18,8 @@ var Regex = {
     regMobile: /^1[3|5][0-9]\d{4,8}$/,
     //传真(XXX-12345678或XXXX-1234567或XXXX-12345678)
     regFax: /^(\d{3,4}-)?\d{7,8}$/,
-    //汉字
-    regChineseWord: /^[u4E00-u9FA5]$/,
+    //中文
+    regChineseWord: /^([\u4E00-\u9FA5])+$/,
     //邮政编码
     regPostalCode: /^[0-9]{6}$/,
     //电话
