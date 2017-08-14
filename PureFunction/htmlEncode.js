@@ -12,7 +12,7 @@
  * @param str
  * @returns {string}
  */
-export default function (str) {
+export default function htmlEncode(str) {
     let s = '';
 
     if (typeof str === 'string' && str.length === 0) return;

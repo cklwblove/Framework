@@ -12,7 +12,7 @@
  * @param name
  * @returns {*}
  */
-export default function (name) {
+export default function getUrlParams(name) {
     //构造一个含有目标参数的正则表达式对象
     var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');
     //匹配目标参数

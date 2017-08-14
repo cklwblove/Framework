@@ -2,14 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="35b86a9d-acd4-48e4-ad35-4275e7d58776" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PureFunction/formatDate.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PureFunction/getUrlParams.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PureFunction/htmlDecode.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PureFunction/htmlEncode.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PureFunction/throttle.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PureFunction/addChineseUnit.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PureFunction/appendStockSuffix.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PureFunction/bytesToSize.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PureFunction/debounce.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PureFunction/generateGUID.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PureFunction/getDevice.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PureFunction/getRandomInt.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PureFunction/inAlipay.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PureFunction/inWeixin.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PureFunction/insertText.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PureFunction/math.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PureFunction/operateLoaclStorage.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PureFunction/operateSessionStorage.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PureFunction/preZeroFill.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PureFunction/validate.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PureFunction/formatDate.js" afterPath="$PROJECT_DIR$/PureFunction/formatDate.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PureFunction/getUrlParams.js" afterPath="$PROJECT_DIR$/PureFunction/getUrlParams.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PureFunction/htmlDecode.js" afterPath="$PROJECT_DIR$/PureFunction/htmlDecode.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PureFunction/htmlEncode.js" afterPath="$PROJECT_DIR$/PureFunction/htmlEncode.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,37 +34,200 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="getUrlParams.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PureFunction/getUrlParams.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="22" column="33" lean-forward="true" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="throttle.js" pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="throttle.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PureFunction/throttle.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-40">
-              <caret line="18" column="30" lean-forward="false" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
+            <state relative-caret-position="334">
+              <caret line="52" column="21" lean-forward="false" selection-start-line="52" selection-start-column="21" selection-end-line="52" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="htmlDecode.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PureFunction/htmlDecode.js">
+      <file leaf-file-name="dom.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Script/src/dom.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="15" column="4" lean-forward="false" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+            <state relative-caret-position="-23169">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1501751473087" expanded="false" signature="0:91" ph="/** @authors liwb (you@example.org) ...*/" />
-                <marker date="1501751473087" expanded="true" signature="93:110" ph="/*...*/" />
-                <marker date="1501751473087" expanded="true" signature="112:168" ph="/** html字符转义解码 ...*/" />
-                <marker date="1501751473087" expanded="true" signature="199:518" ph="{...}" />
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="modals.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Script/src/modals.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="114">
+              <caret line="6" column="33" lean-forward="false" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="appendStockSuffix.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PureFunction/appendStockSuffix.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="14" column="41" lean-forward="false" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="generateGUID.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PureFunction/generateGUID.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="getRandomInt.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PureFunction/getRandomInt.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="114">
+              <caret line="11" column="1" lean-forward="false" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="validate.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PureFunction/validate.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addChineseUnit.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PureFunction/addChineseUnit.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="71" column="24" lean-forward="false" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="getDevice.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/PureFunction/getDevice.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="114">
+              <caret line="11" column="58" lean-forward="true" selection-start-line="11" selection-start-column="58" selection-end-line="11" selection-end-column="58" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bytesToSize.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PureFunction/bytesToSize.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="95">
+              <caret line="10" column="37" lean-forward="false" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="inWeixin.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PureFunction/inWeixin.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="inAlipay.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PureFunction/inAlipay.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="13" column="47" lean-forward="false" selection-start-line="13" selection-start-column="47" selection-end-line="13" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="preZeroFill.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PureFunction/preZeroFill.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="12" column="26" lean-forward="false" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="operateLoaclStorage.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PureFunction/operateLoaclStorage.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-114">
+              <caret line="10" column="35" lean-forward="false" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="operateSessionStorage.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PureFunction/operateSessionStorage.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="57">
+              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="math.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PureFunction/math.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-874">
+              <caret line="10" column="19" lean-forward="false" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="insertText.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PureFunction/insertText.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="95">
+              <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="debounce.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PureFunction/debounce.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="14" column="28" lean-forward="false" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="formatDate.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PureFunction/formatDate.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-369">
+              <caret line="21" column="26" lean-forward="false" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="26" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -83,12 +258,27 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/PureFunction/getUrlParam.js" />
+        <option value="$PROJECT_DIR$/PureFunction/throttle.js" />
+        <option value="$PROJECT_DIR$/PureFunction/getUrlParams.js" />
         <option value="$PROJECT_DIR$/PureFunction/htmlDecode.js" />
         <option value="$PROJECT_DIR$/PureFunction/htmlEncode.js" />
+        <option value="$PROJECT_DIR$/PureFunction/appendStockSuffix.js" />
+        <option value="$PROJECT_DIR$/PureFunction/preZeroFill.js" />
+        <option value="$PROJECT_DIR$/PureFunction/operateLoaclStorage.js" />
+        <option value="$PROJECT_DIR$/PureFunction/operateSessionStorage.js" />
+        <option value="$PROJECT_DIR$/PureFunction/insertText.js" />
+        <option value="$PROJECT_DIR$/PureFunction/debounce.js" />
+        <option value="$PROJECT_DIR$/PureFunction/generateGUID.js" />
+        <option value="$PROJECT_DIR$/PureFunction/getRandomInt.js" />
+        <option value="$PROJECT_DIR$/PureFunction/validate.js" />
+        <option value="$PROJECT_DIR$/PureFunction/bytesToSize.js" />
+        <option value="$PROJECT_DIR$/PureFunction/inWeixin.js" />
+        <option value="$PROJECT_DIR$/PureFunction/inAlipay.js" />
+        <option value="$PROJECT_DIR$/PureFunction/formatTime.js" />
         <option value="$PROJECT_DIR$/PureFunction/formatDate.js" />
-        <option value="$PROJECT_DIR$/PureFunction/getUrlParam.js" />
-        <option value="$PROJECT_DIR$/PureFunction/getUrlParams.js" />
-        <option value="$PROJECT_DIR$/PureFunction/throttle.js" />
+        <option value="$PROJECT_DIR$/PureFunction/addChineseUnit.js" />
+        <option value="$PROJECT_DIR$/PureFunction/getDevice.js" />
       </list>
     </option>
   </component>
@@ -109,7 +299,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds">
     <option name="x" value="60" />
     <option name="y" value="-8" />
     <option name="width" value="1314" />
@@ -133,6 +323,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -146,11 +337,21 @@
               <item name="Framework" type="462c0819:PsiDirectoryNode" />
               <item name="PureFunction" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Framework" type="462c0819:PsiDirectoryNode" />
+              <item name="Script" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Framework" type="462c0819:PsiDirectoryNode" />
+              <item name="Script" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -199,17 +400,18 @@
       <updated>1501750724384</updated>
       <workItem from="1501750728031" duration="1956000" />
       <workItem from="1501809600788" duration="938000" />
+      <workItem from="1502689078753" duration="6317000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2894000" />
+    <option name="totallyTimeSpent" value="9211000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="60" y="-8" width="1314" height="784" extended-state="7" />
+    <frame x="60" y="-8" width="1314" height="784" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3720565" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1923077" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -234,45 +436,12 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="2" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="14" lean-forward="true" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PureFunction/formatDate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="722">
-          <caret line="43" column="50" lean-forward="true" selection-start-line="43" selection-start-column="50" selection-end-line="43" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PureFunction/htmlEncode.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="9" column="3" lean-forward="false" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PureFunction/htmlDecode.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="15" column="4" lean-forward="false" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
-          <folding>
-            <marker date="1501751473087" expanded="false" signature="0:91" ph="/** @authors liwb (you@example.org) ...*/" />
-            <marker date="1501751473087" expanded="true" signature="93:110" ph="/*...*/" />
-            <marker date="1501751473087" expanded="true" signature="112:168" ph="/** html字符转义解码 ...*/" />
-            <marker date="1501751473087" expanded="true" signature="199:518" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PureFunction/getUrlParams.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -281,10 +450,228 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/PureFunction/htmlDecode.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="15" column="4" lean-forward="false" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/PureFunction/throttle.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-40">
+        <state relative-caret-position="247">
           <caret line="18" column="30" lean-forward="false" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" column="14" lean-forward="true" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PureFunction/getUrlParams.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="14" column="36" lean-forward="false" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PureFunction/htmlDecode.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="14" column="34" lean-forward="false" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PureFunction/htmlEncode.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="14" column="34" lean-forward="false" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Script/src/dom.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-23169">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Script/src/modals.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="33" lean-forward="false" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PureFunction/preZeroFill.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="12" column="26" lean-forward="false" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PureFunction/operateSessionStorage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PureFunction/math.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-874">
+          <caret line="10" column="19" lean-forward="false" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PureFunction/insertText.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PureFunction/debounce.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="14" column="28" lean-forward="false" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PureFunction/appendStockSuffix.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="14" column="41" lean-forward="false" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PureFunction/generateGUID.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PureFunction/getRandomInt.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="11" column="1" lean-forward="false" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PureFunction/bytesToSize.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="10" column="37" lean-forward="false" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PureFunction/inWeixin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PureFunction/inAlipay.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="13" column="47" lean-forward="false" selection-start-line="13" selection-start-column="47" selection-end-line="13" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PureFunction/formatTime.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PureFunction/formatDate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-369">
+          <caret line="21" column="26" lean-forward="false" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="26" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PureFunction/operateLoaclStorage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-114">
+          <caret line="10" column="35" lean-forward="false" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PureFunction/throttle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="52" column="21" lean-forward="false" selection-start-line="52" selection-start-column="21" selection-end-line="52" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PureFunction/validate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Script/src/device.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="88" column="9" lean-forward="true" selection-start-line="5" selection-start-column="4" selection-end-line="88" selection-end-column="6" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PureFunction/addChineseUnit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="71" column="24" lean-forward="false" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PureFunction/getDevice.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="11" column="58" lean-forward="true" selection-start-line="11" selection-start-column="58" selection-end-line="11" selection-end-column="58" />
           <folding />
         </state>
       </provider>

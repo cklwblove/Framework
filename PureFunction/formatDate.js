@@ -19,7 +19,7 @@
  * (Date.now(), 'yyyy-MM-dd EEE hh:mm:ss') ==> 2009-03-10 星期二 08:09:04
  * (Date.now(), 'yyyy-M-d h:m:s.S') ==> 2006-7-2 8:9:4.18
  */
-export default function (date, fmt = 'yyyy-MM-dd HH:mm:ss') {
+export function formatDate(date, fmt = 'yyyy-MM-dd HH:mm:ss') {
     date = date == undefined ? new Date() : date;
     date = (typeof date == 'number' || typeof date == 'string') ? new Date(date) : date;
     
@@ -58,4 +58,41 @@ export default function (date, fmt = 'yyyy-MM-dd HH:mm:ss') {
     }
 
     return fmt;
+}
+
+/**
+ * 时间转化为几天前,几小时前，几分钟前
+ * @param ms
+ * @returns {*}
+ */
+export function formatTime(ms) {
+    ms = parseInt(ms);
+
+    var d_second, d_minutes, d_hours, d_days;
+    var timeNow = new Date().getTime();
+    var d = (timeNow - ms) / 1000;
+    var s = new Date();
+
+    d_days = Math.round(d / (24 * 60 * 60));
+    d_hours = Math.round(d / (60 * 60));
+    d_minutes = Math.round(d / 60);
+    d_second = Math.round(d);
+
+    if (d_days > 0 && d_days < 2) {
+        return d_days + '天前';
+    } else if (d_days <= 0 && d_hours > 0) {
+        return d_hours + '小时前';
+    } else if (d_hours <= 0 && d_minutes > 0) {
+        return d_minutes + '分钟前';
+    } else if (d_minutes <= 0 && d_second >= 0) {
+        return '刚刚';
+    } else {
+        s.setTime(ms);
+
+        return (s.getFullYear() + '-' + f(s.getMonth() + 1) + '-' + f(s.getDate()) + ' ' + f(s.getHours()) + ':' + f(s.getMinutes()));
+    }
+
+    function f(n) {
+        return (n < 10) ? '0' + n : n;
+    }
 }
