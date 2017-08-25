@@ -100,10 +100,36 @@ export function isValidEmail(val) {
  * @param val
  * @returns {boolean}
  */
-export function isValidURI(val) {
-    const reg = /^(https?|s?ftp):\/\/\S+$/i;
 
-    return reg.test(val);
+/**
+ * 是否为有效的url
+ // 支持类型:
+ // http(s)://(username:password@)(www.)domain.(com/co.uk)(/...)
+ // (s)ftp://(username:password@)domain.com/...
+ // git://(username:password@)domain.com/...
+ // irc(6/s)://host:port/... // 需要测试
+ // afp over TCP/IP: afp://[<user>@]<host>[:<port>][/[<path>]]
+ // telnet://<user>:<password>@<host>[:<port>/]
+ // smb://[<user>@]<host>[:<port>][/[<path>]][?<param1>=<value1>[;<param2>=<value2>]]
+ * @param val
+ * @returns {*}
+ */
+export function isValidURI(val) {
+    var protocols = '((https?|s?ftp|irc[6s]?|git|afp|telnet|smb):\\/\\/)?',
+        userInfo = '([a-z0-9]\\w*(\\:[\\S]+)?\\@)?',
+        domain = '([a-z0-9]([\\w]*[a-z0-9])*\\.)?[a-z0-9]\\w*\\.[a-z]{2,}(\\.[a-z]{2,})?',
+        port = '(:\\d{1,5})?',
+        ip = '\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}',
+        address = '(\\/\\S*)?',
+        domainType = [protocols, userInfo, domain, port, address],
+        ipType = [protocols, userInfo, ip, port, address],
+        verify;
+
+    verify = function (type) {
+        return new RegExp('^' + type.join('') + '$', 'i').test(url);
+    };
+
+    return verify(domainType) || verify(ipType);
 }
 
 /**
@@ -151,6 +177,17 @@ export function isLeapYear(val) {
     } else {
         return val % 400 == 0;
     }
+}
+
+/**
+ * 是否为数字
+ * @param val
+ * @returns {boolean}
+ */
+export function isDigit(val) {
+    var reg = /^-?\d+\.?\d*$/;
+
+    return reg.test(val);
 }
 
 
