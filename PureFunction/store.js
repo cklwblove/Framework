@@ -145,4 +145,4 @@ try {
 
 store.enabled = !store.disabled;
 
-module.exports = store;
+export default store;
